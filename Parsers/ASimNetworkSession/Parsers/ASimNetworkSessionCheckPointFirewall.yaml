@@ -194,7 +194,7 @@ ParserQuery: |
         {
         CommonSecurityLog
         | where not(disabled)
-        | where DeviceVendor=="CheckPoint" and DeviceProduct=="VPN-1 & FireWall-1"
+        | where replace_string(DeviceVendor, " ","") =~ "CheckPoint" and DeviceProduct=~"VPN-1 & FireWall-1"
         | lookup ActionLookup on DeviceAction
         | lookup ProtocolLookup on Protocol
         | extend 
